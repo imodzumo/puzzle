@@ -16,9 +16,8 @@ footer {
 .primary--text {
     color: #2196F3;
 }
-#puzzle-wrapper {
-    /*width: 600px;*/
-    /*height: 600px;*/
+.wrapper {
     border: 1px solid grey;
-    border-radius: 5px;
+    padding: 5px;
+    border-radius: 15px;
 }

@@ -1,10 +1,24 @@
-import Puzzle from './Puzzle.js';
+import ImagePuzzle from './ImagePuzzle.js';
 
-const imagePuzzle = new Puzzle(
-    document.querySelectorAll('#puzzle-wrapper > div')[0],
-    './images/db98abf8-231d-417f-8851-ce3a24233c6b.jpg',
-    600
+const imagePuzzle = new ImagePuzzle(
+    document.querySelectorAll('#puzzle-wrapper')[0],
+    'images/image_1.jpg',
+    500
 );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // const picturePuzzle2 = new Puzzle(
 //     document.querySelectorAll('#puzzle-wrapper > div')[1],
 //     'https://www.tesla.com/sites/default/files/images/homepage/20180710/ms/homepage-models.jpg?20181117',
@@ -12,9 +26,9 @@ const imagePuzzle = new Puzzle(
 //     4
 // );
 
-imagePuzzle.onSwap = function(movements){
-    console.log(movements);
-};
+// imagePuzzle.onSwap = function(movements){
+//     console.log(movements);
+// };
 
 // const modal = document.querySelector('#success-modal');
 // modal.style.display = 'block';
