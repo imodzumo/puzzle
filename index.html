@@ -11,28 +11,35 @@
         <header>
             <h1 class="primary--text">Puzzle Game 3x3</h1>
 
-            <!-- Original image -->
-            <div class="image-wrapper">
-                <p class="btn-show-image">Show original image</p>
-                <img src="images/image_1.jpg" alt="image" class="preview-image hidden">
-                <div class="btn-close">x</div>
+            <div class="start-btn-wrapper">
+                <button class="start-btn">Start Game</button>
             </div>
         </header>
 
-        <main>
+        <main class="main hidden">
             <!-- Puzzle -->
             <div class="wrapper">
                 <div id="puzzle-wrapper"></div>
             </div>
 
 
+            <!-- Original image -->
+            <div class="image-wrapper">
+                <div class="btn-close-image hidden">x</div>
+                <p class="btn-show-image">Show original image</p>
+                <img src="images/image_1.jpg" alt="image" class="preview-image hidden">
+            </div>
+
             <!-- Modal -->
             <div class="main-success-block" id="main-success-block">
                 <div class="curtain hidden"></div>
                 <div class="success-wrapper">
                     <div>
-                        <div class="btn-close">x</div>
+                        <div class="btn-close hidden">x</div>
                         <h2 style="color: white">Well done!</h2>
+                        <p style="color: white">Your time:
+                            <span id="seconds">00</span>:<span id="tens">00</span>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -46,5 +53,6 @@
     <script type="module" src="scripts/app.js"></script>
     <script type="module" src="scripts/Part.js"></script>
     <script type="module" src="scripts/ImagePuzzle.js"></script>
+    <script type="module" src="scripts/Stopwatch.js"></script>
 </body>
 </html>

@@ -8,23 +8,21 @@ const imagePuzzle = new ImagePuzzle(
 );
 
 
-imagePuzzle.onSwap = function(movements){
-    console.log(movements);
-};
-
 // Modal success wrapper
 const modal = document.querySelector('#main-success-block');
-modal.style.display = 'block';
+// modal.style.display = 'block';
 
 imagePuzzle.onFinished = function() {
     setTimeout(() => {
         modal.classList.add('open');
         modal.querySelector('.curtain').classList.remove('hidden');
+        document.querySelector('.btn-close').classList.remove('hidden');
     }, 500);
     modal.querySelector('.btn-close').onclick = () => {
         modal.classList.remove('open');
         this.el.classList.remove('curtain');
         modal.querySelector('.curtain').classList.add('hidden');
+        document.querySelector('.btn-close').classList.add('hidden');
     }
 };
 
@@ -33,7 +31,17 @@ const image = document.querySelector('.preview-image');
 
 document.querySelector('.btn-show-image').onclick = () => {
     image.classList.remove('hidden');
+    document.querySelector('.btn-close-image').classList.remove('hidden');
 };
-document.querySelector('.btn-close').onclick = () => {
+document.querySelector('.btn-close-image').onclick = () => {
     image.classList.add('hidden');
+    document.querySelector('.btn-close-image').classList.add('hidden');
+};
+
+// Start button
+
+const main = document.querySelector('.main');
+document.querySelector('.start-btn').onclick = () => {
+    main.classList.remove('hidden');
+    document.querySelector('.start-btn-wrapper').classList.add('hidden');
 };
