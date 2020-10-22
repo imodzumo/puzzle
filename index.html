@@ -10,6 +10,13 @@
     <div class="background">
         <header>
             <h1 class="primary--text">Puzzle Game 3x3</h1>
+
+            <!-- Original image -->
+            <div class="image-wrapper">
+                <p class="btn-show-image">Show original image</p>
+                <img src="images/image_1.jpg" alt="image" class="preview-image hidden">
+                <div class="btn-close">x</div>
+            </div>
         </header>
 
         <main>
@@ -20,21 +27,15 @@
 
 
             <!-- Modal -->
-<!--            <div id="success-modal" class="modal-wrapper" style="display: none">-->
-<!--                <div class="modal">-->
-<!--                    <div class="head">-->
-<!--                        <a class="btn-close trigger" href="#">-->
-<!--                            <i class="fa fa-times" aria-hidden="true"></i>-->
-<!--                        </a>-->
-<!--                    </div>-->
-<!--                    <div class="content">-->
-<!--                        <div class="good-job">-->
-<!--                            <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>-->
-<!--                            <h1>Good Job!</h1>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
+            <div class="main-success-block" id="main-success-block">
+                <div class="curtain hidden"></div>
+                <div class="success-wrapper">
+                    <div>
+                        <div class="btn-close">x</div>
+                        <h2 style="color: white">Well done!</h2>
+                    </div>
+                </div>
+            </div>
         </main>
 
         <footer>

@@ -7,13 +7,18 @@ export default class Puzzle {
         this.imageSrc = imageSrc;
         this.width = width;
         this.parts = [];
+        this.shuffling = false;
+        this.numberOfMovements = 0;
+
+        // events
+        this.onFinished = () => {};
+        this.onSwap = () => {};
 
         this.el = this.createWrapper();
 
         this.init();
         const img = new Image();
         img.onload = () => {
-            console.log(img.width, img.height);
             this.height = img.height * this.width / img.width;
             this.el.style.width = `${this.width}px`;
             this.el.style.height = `${this.height}px`;
@@ -21,8 +26,6 @@ export default class Puzzle {
             this.setup();
         };
         img.src =this.imageSrc;
-
-
     }
 
     init() {
@@ -43,10 +46,7 @@ export default class Puzzle {
         for (let i = 0; i <this.dimension * this.dimension; i++) {
             this.parts.push(new Part(this, i));
         }
-
         this.shuffle();
-        console.log(this.parts);
-
     }
 
     shuffle() {
@@ -56,22 +56,23 @@ export default class Puzzle {
         }
     }
 
-    swapParts(i,j) {
+    swapParts(i,j, animate) {
+        this.parts[i].setPosition(j, animate, i);
+        this.parts[j].setPosition(i);
         [this.parts[i], this.parts[j]] = [this.parts[j], this.parts[i]];
-        this.parts[i].setPosition(i);
-        this.parts[j].setPosition(j);
-        console.log(this.parts);
-        if (this.isAssembled()) {
-            console.log('good');
+        if (!this.shuffling && this.isAssembled()) {
+            if (this.onFinished && typeof this.onFinished === 'function') {
+                this.onFinished.call(this);
+            }
         }
     }
 
     isAssembled() {
         for (let i = 0; i <this.parts.length; i++) {
             if (i !== this.parts[i].index) {
-                if (i === 6 && this.parts[i].index === 8 && this.parts[i+1].index === i+1) {
-                    return true;
-                }
+                // if (i === 6 && this.parts[i].index === 8 && this.parts[i+1].index === i+1) {
+                //     return true;
+                // }
                 return false;
             }
         }

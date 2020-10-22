@@ -4,7 +4,6 @@ export default class Part {
         this.isEmpty = false;
         this.index = ind;
         this.puzzle = puzzle;
-
         this.width = this.puzzle.width / this.puzzle.dimension;
         this.height = this.puzzle.height / this.puzzle.dimension;
 
@@ -37,7 +36,12 @@ export default class Part {
             if ((x === emptyX || y === emptyY) &&
                 (Math.abs(x - emptyX) === 1 || Math.abs(y - emptyY) === 1 )
             ) {
-                this.puzzle.swapParts(currentPartIndex, emptyPartIndex);
+                this.puzzle.numberOfMovements++;
+                if (this.puzzle.onSwap && typeof this.puzzle.onSwap === 'function') {
+                    this.puzzle.onSwap(this.puzzle.numberOfMovements);
+                }
+
+                this.puzzle.swapParts(currentPartIndex, emptyPartIndex, true);
             }
         };
 
@@ -49,17 +53,51 @@ export default class Part {
         const left = this.width * x;
         const top = this.height * y;
 
+        this.el.style.width = `${this.width}px`;
+        this.el.style.height = `${this.height}px`;
+
         this.el.style.backgroundImage = `url(${this.puzzle.imageSrc})`;
         this.el.style.backgroundPosition = `-${left}px -${top}px`;
     }
 
-    setPosition(index) {
+    setPosition(destinationIndex, animate, currentIndex) {
+        const {left, top} = this.getPositionFromIndex(destinationIndex);
+        const {left: currentLeft, top: currentTop} = this.getPositionFromIndex(currentIndex);
 
-        const {left, top} = this.getPositionFromIndex(index);
-
-        this.el.style.left = `${left}px`;
-        this.el.style.top = `${top}px`;
+        if (animate) {
+            if (left !== currentLeft) {
+                this.animate('left', currentLeft, left);
+            } else if (top !== currentTop) {
+                this.animate('top', currentTop, top);
+            }
+        } else {
+            this.el.style.left = `${left}px`;
+            this.el.style.top = `${top}px`;
+        }
     }
+
+    animate(position, currentPosition, destination) {
+        const animationDuration = 300;
+        const frameRate = 10;
+        let step = frameRate * Math.abs((destination - currentPosition)) / animationDuration;
+
+        let id = setInterval(() => {
+            if (currentPosition < destination) {
+                currentPosition = Math.min(destination, currentPosition + step);
+                if (currentPosition >= destination) {
+                    clearInterval(id)
+                }
+            } else {
+                currentPosition = Math.max(destination, currentPosition - step);
+                if (currentPosition <= destination) {
+                    clearInterval(id);
+                }
+            }
+
+            this.el.style[position] = currentPosition + 'px';
+        }, frameRate)
+    }
+
 
     getPositionFromIndex(index) {
         const {x, y} = this.getXY(index);
