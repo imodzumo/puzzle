@@ -22,7 +22,7 @@ footer {
     cursor: pointer;
     position: absolute;
     top: 40px;
-    right: 125px;
+    right: 120px;
 }
 .btn-show-image {
     cursor: pointer;
@@ -95,4 +95,9 @@ footer {
     border: 1px solid grey;
     padding: 5px;
     border-radius: 15px;
+}
+@media screen and (max-width: 425px){
+    .btn-close-image {
+        right: 20px;
+    }
 }

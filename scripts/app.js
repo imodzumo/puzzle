@@ -1,10 +1,17 @@
 import ImagePuzzle from './ImagePuzzle.js';
 
+let width = 0;
+if (window.matchMedia("(max-width: 425px)").matches) {
+    width = 300;
+} else {
+    width = 500;
+}
+
 const imagePuzzle = new ImagePuzzle(
     document.querySelectorAll('#puzzle-wrapper')[0],
     'images/image_1.jpg',
     // 'https://i.infocar.ua/i/12/5713/700x350.jpg',
-    500
+    width
 );
 
 
