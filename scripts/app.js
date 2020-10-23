@@ -42,9 +42,9 @@ document.querySelector('.btn-close-image').onclick = () => {
 
 const main = document.querySelector('.main');
 
+let minutes = '00';
 let seconds = '00';
-let tens = '00';
-let appendTens = document.getElementById("tens");
+let appendMinutes = document.getElementById("minutes");
 let appendSeconds = document.getElementById("seconds");
 let Interval;
 
@@ -53,24 +53,27 @@ document.querySelector('.start-btn').onclick = () => {
     document.querySelector('.start-btn-wrapper').classList.add('hidden');
 
     clearInterval(Interval);
-    Interval = setInterval(startTimer, 10);
+    Interval = setInterval(startTimer, 1000);
     function startTimer() {
-        tens++;
-        if (tens < 9) {
-            appendTens.innerHTML = "0" + tens;
-        }
-        if (tens > 9) {
-            appendTens.innerHTML = tens;
-        }
-        if (tens > 99) {
-            console.log("seconds");
-            seconds++;
+        seconds++;
+
+        if (seconds < 60) {
             appendSeconds.innerHTML = "0" + seconds;
-            tens = 0;
-            appendTens.innerHTML = "0" + 0;
         }
-        if (seconds > 9) {
+        if (seconds > 60) {
             appendSeconds.innerHTML = seconds;
+        }
+        if (seconds > 60) {
+            minutes++;
+            appendMinutes.innerHTML = "0" + minutes;
+            seconds = 0;
+            appendSeconds.innerHTML = "0" + 0;
+        }
+        if (minutes < 60) {
+            appendMinutes.innerHTML = minutes;
+        }
+        if (minutes > 60) {
+            appendMinutes.innerHTML = minutes;
         }
     }
 };

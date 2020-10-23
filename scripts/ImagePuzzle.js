@@ -3,7 +3,7 @@ import Part from "./Part.js";
 export default class Puzzle {
     constructor(el,imageSrc, width) {
         this.parentEl = el;
-        this.dimension = 2;
+        this.dimension = 3;
         this.imageSrc = imageSrc;
         this.width = width;
         this.parts = [];
