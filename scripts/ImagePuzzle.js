@@ -3,7 +3,7 @@ import Part from "./Part.js";
 export default class Puzzle {
     constructor(el,imageSrc, width) {
         this.parentEl = el;
-        this.dimension = 3;
+        this.dimension = 2;
         this.imageSrc = imageSrc;
         this.width = width;
         this.parts = [];
@@ -68,11 +68,11 @@ export default class Puzzle {
     }
 
     isAssembled() {
-        for (let i = 0; i <this.parts.length; i++) {
+        for (let i = 0; i < this.parts.length; i++) {
             if (i !== this.parts[i].index) {
-                // if (i === 6 && this.parts[i].index === 8 && this.parts[i+1].index === i+1) {
-                //     return true;
-                // }
+                if (i === 6 && this.parts[i].index === 8 && this.parts[i + 1].index === i + 1) {
+                    return true;
+                }
                 return false;
             }
         }

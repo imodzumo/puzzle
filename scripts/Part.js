@@ -1,6 +1,5 @@
 export default class Part {
     constructor(puzzle, ind) {
-
         this.isEmpty = false;
         this.index = ind;
         this.puzzle = puzzle;
